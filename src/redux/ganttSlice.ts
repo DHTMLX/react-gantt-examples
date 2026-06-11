@@ -85,14 +85,14 @@ const ganttSlice = createSlice({
 	initialState,
 	reducers: {
 
-		updateTask(state, action: PayloadAction<Task>) {
+		updateTask(state, action: PayloadAction<SerializedTask>) {
 			const updatedTask = action.payload;
 			const index = state.tasks.findIndex(task => task.id === updatedTask.id);
 			if (index !== -1) {
 				state.tasks[index] = { ...state.tasks[index], ...updatedTask };
 			}
 		},
-		createTask(state, action: PayloadAction<Task>) {
+		createTask(state, action: PayloadAction<SerializedTask>) {
 			state.tasks.push({...action.payload, id: `DB_ID:${action.payload.id}` });// emulate database ID
 		},
 		deleteTask(state, action: PayloadAction<string>) {

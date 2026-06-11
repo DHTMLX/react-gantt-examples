@@ -88,7 +88,8 @@ export default function BasicInitDemo() {
           TextEditor: TextEditor,
           DurationEditor: DurationEditor,
           DateEditor: DateEditor
-        }}/>
+        }}
+      />
     </div>
   );
 }

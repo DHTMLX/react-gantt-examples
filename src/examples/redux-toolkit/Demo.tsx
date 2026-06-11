@@ -84,9 +84,9 @@ const ReactGanttExample: React.FC = () => {
     save: (entity, action, payload, id) => {
       if (entity === "task") {
         if (action === "update") {
-          dispatch(updateTask(payload as Task));
+          dispatch(updateTask(payload as SerializedTask));
         } else if (action === "create") {
-          dispatch(createTask(payload as Task));
+          dispatch(createTask(payload as SerializedTask));
         } else if (action === "delete") {
           dispatch(deleteTask(String(id)));
         }

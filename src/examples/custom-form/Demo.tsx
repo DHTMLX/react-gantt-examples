@@ -34,7 +34,8 @@ export default function BasicInitDemo() {
         ref={ganttRef}
         tasks={tasks}
         links={links}
-        customLightbox={<CustomLightbox />} />
+        customLightbox={<CustomLightbox />}
+      />
     </div>
   );
 }
