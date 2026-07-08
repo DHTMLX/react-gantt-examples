@@ -5,8 +5,25 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import MobileMenu from './MobileMenu';
 
+const hasEmbeddedMode = (search: string) =>
+  new URLSearchParams(search).get('mode') === 'embed';
+
+const isEmbeddedMode = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  const hashQueryIndex = window.location.hash.indexOf('?');
+  const hashQuery =
+    hashQueryIndex > -1 ? window.location.hash.slice(hashQueryIndex + 1) : '';
+
+  return hasEmbeddedMode(window.location.search) || hasEmbeddedMode(hashQuery);
+};
+
 export default function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const embedded = isEmbeddedMode();
 
   const handleBurgerClick = () => {
     setMobileMenuOpen(true);
@@ -18,16 +35,16 @@ export default function Layout() {
 
   return (
     <div className="app-container">
-      <Header onBurgerClick={handleBurgerClick} />
+      {!embedded && <Header onBurgerClick={handleBurgerClick} />}
 
       <div className="layout-body">
-        <Sidebar /> {/* Hidden on mobile via CSS */}
+        {!embedded && <Sidebar />} {/* Hidden on mobile via CSS */}
         <main className="main-content">
           <Outlet />
         </main>
       </div>
 
-      {mobileMenuOpen && (
+      {!embedded && mobileMenuOpen && (
         <MobileMenu onClose={handleMenuClose} />
       )}
     </div>
