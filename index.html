@@ -5,6 +5,41 @@
     <link rel="icon" type="image/x-icon" href="/dhx.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React Gantt : Samples</title>
+    <script>
+      (function () {
+        var ALLOWED_ORIGINS = ["https://dhtmlx.com", "http://localhost:3000"];
+        var GANTT_ATTR = "data-gantt-theme";
+        var root = document.documentElement;
+        var forced = false;
+        var ownSkin = root.getAttribute(GANTT_ATTR);
+
+        function apply(theme) {
+          forced = theme === "dark";
+          if (forced) {
+            root.setAttribute("data-embed-theme", "dark");
+            root.setAttribute(GANTT_ATTR, "dark");
+          } else {
+            root.removeAttribute("data-embed-theme");
+            if (ownSkin) root.setAttribute(GANTT_ATTR, ownSkin);
+            else root.removeAttribute(GANTT_ATTR);
+          }
+        }
+
+        new MutationObserver(function () {
+          if (!forced) ownSkin = root.getAttribute(GANTT_ATTR);
+          else if (root.getAttribute(GANTT_ATTR) !== "dark") root.setAttribute(GANTT_ATTR, "dark");
+        }).observe(root, { attributes: true, attributeFilter: [GANTT_ATTR] });
+
+        if (/(^|[?&])theme=dark/.test(location.search + "&" + location.hash)) apply("dark");
+
+        window.addEventListener("message", function (event) {
+          if (ALLOWED_ORIGINS.indexOf(event.origin) === -1) return;
+          if (typeof event.data !== "string") return;
+          if (event.data.indexOf("gx-theme:") !== 0) return;
+          apply(event.data.slice(9));
+        });
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

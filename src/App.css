@@ -276,3 +276,42 @@ body{
     display: none;
   }
 }
+
+:root[data-embed-theme="dark"],
+:root[data-embed-theme="dark"] .gantt_container {
+  --dhx-gantt-theme: dark;
+}
+
+:root[data-embed-theme="dark"] {
+  color-scheme: dark;
+}
+
+:root[data-embed-theme="dark"] #root {
+  --dhxgantt-background: #141414;
+  --dhxgantt-background-aside: #1b1b1c;
+  --dhxgantt-text-header-color: rgba(255, 255, 255, 0.9);
+  --dhxgantt-text-title-color: rgba(255, 255, 255, 0.9);
+  --dhxgantt-border: #4b4b4b;
+}
+
+:root[data-embed-theme="dark"] .main-content {
+  background: #141414;
+}
+
+:root[data-embed-theme="dark"] .demo-toolbar input[type=button],
+:root[data-embed-theme="dark"] .demo-toolbar input[type=file],
+:root[data-embed-theme="dark"] .demo-toolbar .gantt_input_styled,
+:root[data-embed-theme="dark"] .demo-toolbar button {
+  background: #1b1b1c;
+  color: rgba(255, 255, 255, 0.9);
+  border-color: #4b4b4b;
+}
+
+:root[data-embed-theme="dark"] .demo-toolbar input[type=button]:active,
+:root[data-embed-theme="dark"] .demo-toolbar button:active {
+  background: #2a2a2a;
+}
+
+:root[data-embed-theme="dark"] .demo-toolbar label {
+  color: rgba(255, 255, 255, 0.7);
+}

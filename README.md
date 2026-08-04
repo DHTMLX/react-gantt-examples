@@ -14,7 +14,7 @@ npm install
 npm start
 ```
 
-The app starts locally with the public trial wrapper package `@dhtmlx/trial-react-gantt` pinned to `^10.0.0`.
+The app starts locally with the public trial wrapper package `@dhtmlx/trial-react-gantt` pinned to `^10.0.1`.
 
 ## Build for production
 
